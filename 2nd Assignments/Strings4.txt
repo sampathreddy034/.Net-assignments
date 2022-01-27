@@ -1,0 +1,30 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Assignment2
+{
+    class Strings
+    {
+        public static void Main()
+        {
+            string word,word2;
+            char[] arr;
+            Console.WriteLine("Enter the word");
+            word = Console.ReadLine();
+            Console.WriteLine($"Length of the word is {word.Length}");
+            arr = word.ToCharArray();
+            Array.Reverse(arr);
+            Console.Write("Reverse of the word is ");
+            Console.WriteLine(new string(arr));
+            Console.WriteLine("Enter the second word");
+            word2 = Console.ReadLine();
+            int k = string.Compare(word, word2);
+            if(k==0)
+                Console.WriteLine("Both the words are same");
+
+        }
+    }
+}

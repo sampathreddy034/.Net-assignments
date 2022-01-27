@@ -1,0 +1,64 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Assignment2
+{
+    class Student
+    {
+        public string Rollno, Name, Class, SEM, Branch,Status="Pass";
+        public int[] Marks = new int[5];
+        public double Average,sum=0;
+        public void Displayresult()
+        {
+            Average = Marks.Average();
+           // Console.WriteLine($"Average Marks secured is {Average}");
+            foreach(var k in Marks)
+            {
+                if(k<35)
+                {
+                    Status = "Failed";
+                    //Console.WriteLine("Failed");
+                    break;
+                }
+            }
+            sum = Marks.Sum();
+            if(Average<50 && Status=="Failed")
+            {
+                Status = "Failed";
+                //Console.WriteLine("Failed");
+            }
+            else
+            {
+                Status = "Pass";
+                //Console.WriteLine("Pass");
+            }
+        }
+        public void Display()
+        {
+            Console.WriteLine($"Name: {Name} \n Roll no: {Rollno} \n Class: {Class} \n SEM: {SEM} \n Branch: {Branch} \n Average Marks: {Average} \n Status: {Status}");
+        }
+        public Student(String Rollno,String Name,String Class,String SEM,string Branch)
+        {
+            this.Rollno = Rollno;
+            this.Name = Name;
+            this.Class = Class;
+            this.SEM = SEM;
+            this.Branch = Branch;
+        }
+        public static void Main()
+        {
+            Student s = new Student("123", "Hari", "Btech 2nd", "1st", "CSE");
+            Console.WriteLine("Enter Marks");
+            for(int i=0;i<s.Marks.Length;i++)
+            {
+                Console.WriteLine($"Enter Marks Secured in {i+1} subject");
+                s.Marks[i] = Convert.ToInt32(Console.ReadLine());
+            }
+            s.Displayresult();
+            s.Display();
+        }
+    }
+}

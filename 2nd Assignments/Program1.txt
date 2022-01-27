@@ -1,0 +1,95 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Assignment2
+{
+    class Accounts
+    {
+        public int Accountno, Amount, Balance;
+        public String Customername, Accounttype;
+        public char TransactionType;
+        public void Deposit(int Amount)
+        {
+                Balance += Amount;
+            Console.WriteLine("Transaction Sucessfull");
+        }
+        public void Debit(int Amount)
+        {
+            if (Amount < 0 || Amount > Balance)
+            {
+                Console.WriteLine("Your Account balance is low \n Transaction cannot be done");
+            }
+            else
+            {
+                Balance -= Amount;
+                Console.WriteLine("Transaction Sucessfull");
+            }
+
+        }
+        public void Show()
+        {
+            Console.WriteLine($"Account Number: {Accountno}");
+            Console.WriteLine($"Customer Name: {Customername}");
+            Console.WriteLine($"Account Type: {Accounttype}");
+            Console.WriteLine($"Balance: {Balance}");
+        }
+        public Accounts(int Accountno,String Customername,String Accounttype)
+        {
+            this.Accountno = Accountno;
+            this.Customername = Customername;
+            this.Accounttype = Accounttype;
+        }
+
+    }
+    class Program
+    {
+        public bool i = true;
+        static void Main(string[] args)
+        {
+            Program p = new Program();
+            Accounts ac = new Accounts(123, "Hari", "Savings");
+            
+            while(p.i)
+            {
+                Console.WriteLine($"Hello {ac.Customername} \n Enter the Transaction to be performed");
+                Console.WriteLine(" D.Deposit\n W.Withdraw \n S.Show ");
+                Console.WriteLine("Press any other key to exit");
+                ac.TransactionType = (Convert.ToChar(Console.ReadLine()));
+                switch (ac.TransactionType)
+                {
+                    case 'D':
+                        {
+                            Console.WriteLine("Enter the Amount to be deposited");
+                            ac.Amount=Convert.ToInt32(Console.ReadLine());
+                            ac.Deposit(ac.Amount);
+                            Console.WriteLine();
+                            break;
+                        }
+                    case 'W':
+                        {
+                            Console.WriteLine("Enter the Amount to be Withdrawn");
+                            ac.Amount = Convert.ToInt32(Console.ReadLine());
+                            ac.Debit(ac.Amount);
+                            Console.WriteLine();
+                            break;
+                        }
+                    case 'S':
+                        {
+                            ac.Show();
+                            Console.WriteLine();
+                            break;
+                        }
+                    default:
+                        {
+                            p.i = false;
+                            Console.WriteLine("Thank you visit again");
+                            break;
+                        }
+                }
+            }
+        }
+    }
+}

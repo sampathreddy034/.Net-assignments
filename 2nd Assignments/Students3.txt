@@ -1,0 +1,60 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Assignment2
+{
+    abstract class Students
+    {
+        public String Name, StudentId;
+        public double Grade;
+        public abstract bool IsPassed(double Grade);
+
+    }
+    class Undergraduate : Students
+    {
+        public override bool IsPassed(double Grade)
+        {
+            if (Grade > 80.0)
+            {
+                return true;
+            }
+            else return false;
+        }
+    }
+    class Graduate : Students
+    {
+        public override bool IsPassed(double Grade)
+        {
+            if (Grade > 70.0)
+            {
+                return true;
+            }
+            else return false;
+        }
+    }
+    class Demo
+    {
+        public bool status;
+        public static void Main()
+        {
+            Demo d = new Demo();
+            Undergraduate s = new Undergraduate();
+            Console.WriteLine("Enter name");
+            s.Name = Console.ReadLine();
+            Console.WriteLine("Student Id");
+            s.StudentId = Console.ReadLine();
+            Console.WriteLine("Enter Grade");
+            s.Grade = Convert.ToDouble(Console.ReadLine());
+            
+            d.status=s.IsPassed(s.Grade);
+            Console.WriteLine($"If the sudent is an Undergraduate then he/she is {d.status}");
+            Graduate g = new Graduate();
+            
+            d.status=g.IsPassed(s.Grade);
+            Console.WriteLine($"If the sudent is an graduate then he/she is {d.status}");
+        }
+    }
+}
