@@ -1,0 +1,140 @@
+/*
+1.	Write a T-SQL Program to generate complete payslip of a given employee with respect to the following condition
+a)	HRA  as 10% Of sal
+b)	DA as  20% of sal
+c)	PF as 8% of sal
+d)	IT as 5% of sal
+e)	Deductions as sum of PF and IT
+f)	Gross Salary as sum of SAL,HRA,DA and Deductions
+g)	Net salary as  Gross salary- Deduction
+*/
+
+use assignment1
+
+begin
+declare @ename varchar(20)='Aditi'
+declare @salary float=40000
+declare @hra float, @Da float, @Pf float, @IT float,@Deduction float,@Gross_salary float
+declare @Net_salary float,@sum float
+set @hra=@salary*0.1
+set @Da=@salary*0.2
+set @pf=@salary*0.08
+set @IT=@salary*0.05
+set @Deduction=@Pf+@IT
+set @sum=@salary-(@hra+@Da+@Deduction)
+set @Gross_salary=@sum+(@hra+@Da+@Deduction)
+print 'Gross Salary :'
+print @Gross_salary
+set @Net_salary=@Gross_salary-@Deduction
+select @ename as Employee_name,@hra as HRA,@Da as DA,@Pf as pf,@IT as IT,@Deduction as Deduction,@Gross_Salary as Gross_Salary,@Net_salary as Net_Salary 
+end
+
+
+/* 2.	Write a T-SQL Program to Display complete result of a given student. (Note: Consider 10th standard result sheet and Student table structure as (sno,sname,maths,phy,comp)*/
+
+begin
+declare @SNo int,@SName varchar(20),@Maths int,@Physics int,@Computer int,@Total int
+declare @Resultss varchar(20)
+set @SNo=1
+set @SName='Harry'
+set @Maths=90
+set @Physics=46
+set @Computer=65
+set @Total=(@Maths+@Physics+@Computer)
+create table Student_Result(
+Sno int,Sname varchar(20),Maths int,Physics int,Computer int,Total int)
+insert into Student_Result
+values(@SNo,@SName,@Maths,@Physics,@Computer,@Total)
+select *from Student_Result
+end
+
+
+/*
+3.Write a T-SQL Program to find the factorial of a given number.
+*/
+
+Begin
+declare @fact float=1;
+declare @n float=5
+declare @temp float=@n
+while(@temp>0)
+begin
+set @fact=@fact*@temp
+set @temp=@temp-1;
+end
+print 'Factorial of '+cast(@n as varchar(20))+' is '+cast(@fact as varchar(20))
+end
+
+
+/*
+4.Create a stored procedure to generate multiplication tables up to a given number.
+*/
+
+Create or Alter Procedure Multiplication @num int
+as 
+begin
+declare @Mult int 
+declare @i int = 1, @j int = 1
+while @i <=@num
+begin
+print 'Multiplication Table of '+cast(@i as varchar)
+while @j <= 10
+begin
+set @Mult = @i * @jprint cast(@i as varchar(5)) + ' * ' + cast(@j as varchar(5)) + ' = ' + cast(@Mult as varchar(5))
+set @j = @j + 1
+end
+set @i = @i + 1
+set @j=1
+end
+end
+
+exec Multiplication 4
+
+
+/*
+5.Create a user defined function calculate Bonus for all employees of a  given job using following conditions
+a.	       For Deptno10 employees 15% of sal as bonus.
+b.	       For Deptno20 employees  20% of sal as bonus
+c.	      For Others employees 5%of sal as bonus
+*/
+
+create or alter function Calculate_Bonus()
+returns table
+as 
+return (select ename, Bonus=case 
+when DEPTNO=10 then SAL*0.15
+when DEPTNO=20 then SAL*0.2									  
+else SAL*0.05 									 
+end 									 
+from EMP)
+
+select * from Calculate_Bonus()
+
+
+/*
+6.Create a trigger to restrict data manipulation on EMP table during General holidays. Display the error message like “Due to Independence day you cannot manipulate data”
+Note: Create holiday table as (holiday_date,Holiday_name) store at least 4 holiday details
+*/
+
+
+create table holiday
+(holiday_date date,
+holiday_name varchar(20))
+
+
+insert into holiday values
+('20/02/2022','Independence Day'),
+('26/jan/2021','Republic Day'),
+('28/feb/2021','Ramanujan birthday'),
+('05/sep/2021','Teachers day'),
+('02/oct/2021','Gandhi Jayanthi')
+
+
+Create or Alter Trigger RestrictingChanges 
+on holiday
+instead of update
+as
+raiserror('You cannot manipulate data on a public Holiday',16,1)
+
+update  holiday set holiday_date='4/aug/2021' where holiday_date='5/sep/2021'
+
