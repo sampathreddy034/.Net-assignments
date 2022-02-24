@@ -1,0 +1,189 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace LinqAssignment
+{
+    public class Employee
+    {
+        public int EmployeeId;
+        public string FirstName;
+        public string LastName;
+        public string Title;
+        public DateTime DOB;
+        public DateTime DOJ;
+        public string City;
+        //public Employee(int Eid,string FName,string Lname,string Ti,DateTime birth,DateTime joining,string loc)
+        //{
+        //    EmployeeID = Eid;
+        //    FirstName = FName;
+        //    LastName = Lname;
+        //    Title = Ti;
+        //    DOB = birth;
+        //    DOJ = joining;
+        //    City = loc;
+
+        //}
+    }
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            
+            List<Employee> emplist = new List<Employee>() {
+            new Employee(){ EmployeeId=1001,FirstName="Malcolm",LastName="Daruwalla",Title="Manager",DOB=new DateTime(1984,11,16),DOJ=new DateTime(2011,6,8),City="Mumbai" },
+            new Employee(){ EmployeeId=1002,FirstName="Asdin",LastName="Dhalla",Title="AsstManager",DOB=new DateTime(1984,08,20),DOJ=new DateTime(2012,7,7),City="Mumbai"},
+             new Employee(){EmployeeId= 1003,FirstName="Madhavi",LastName="Oza",Title="Consultant",DOB=new DateTime(1987,11,14),DOJ=new DateTime(2015,4,12),City="Pune"},
+            new Employee(){ EmployeeId=1004,FirstName="Saba",LastName="Shaikh",Title="SE",DOB=new DateTime(1990,6,3),DOJ=new DateTime(2016,2,2),City="Pune"},
+            new Employee(){ EmployeeId=1005,FirstName="Nazia",LastName="Shaikh",Title="SE",DOB=new DateTime(1991,3,8),DOJ=new DateTime(2016,2,2),City="Mumbai"},
+            new Employee(){ EmployeeId=1006,FirstName="Amit",LastName="Pathak",Title="Consultant",DOB=new DateTime(1989,11,7),DOJ=new DateTime(2014,8,8),City="Chennai"},
+            new Employee(){ EmployeeId=1007,FirstName="Vijay",LastName="Natrajan",Title="Consultant",DOB=new DateTime(1989,12,2),DOJ=new DateTime(2015,1,6),City="Mumbai"},
+            new Employee(){ EmployeeId=1008,FirstName="Rahul",LastName="Dubey",Title="Associate",DOB=new DateTime(1993,11,11),DOJ=new DateTime(2014,11,6),City="Chennai"},
+            new Employee(){ EmployeeId=1009,FirstName="Suresh",LastName="Mistry",Title="Associate",DOB=new DateTime(1992,8,12),DOJ=new DateTime(2014,12,3),City="Chennai"},
+            new Employee(){ EmployeeId=1010,FirstName="Sumit",LastName="Shah",Title="Manager",DOB=new DateTime(1991,4,12),DOJ=new DateTime(2016,1,2),City="Pune"}};
+            var x1=from n in emplist
+                  select n;
+            Console.WriteLine("detail of all the employee");
+            foreach (var f in x1)
+            {
+                Console.WriteLine(f.EmployeeId + "\t" + f.FirstName + "\t" + f.LastName + "\t" + f.Title + "\t" + f.DOB + "\t" + f.DOJ + "\t" + f.City);
+            }
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine("details of all the employee whose location is not Mumbai");
+            var e = emplist.Where(x => x.City != "Mumbai");
+            foreach (var f1 in e)
+            {
+                Console.WriteLine(f1.EmployeeId + "\t" + f1.FirstName + "\t" + f1.LastName + "\t" + f1.Title + "\t" + f1.DOB + "\t" + f1.DOJ + "\t" + f1.City);
+            }
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine("details of all the employee whose title is AsstManager");
+            var e1 = emplist.Where(x => x.Title == "AsstManager");
+            foreach (var f in e1)
+            {
+                Console.WriteLine(f.EmployeeId + "\t" + f.FirstName + "\t" + f.LastName + "\t" + f.Title + "\t" + f.DOB + "\t" + f.DOJ + "\t" + f.City);
+            }
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine("details of all the employee whose Last Name start with S");
+            var e2 = from w1 in emplist
+                where w1.LastName.StartsWith("S")
+                select w1;
+
+            foreach (var f in e2)
+            {
+                Console.WriteLine(f.EmployeeId + "\t" + f.FirstName + "\t" + f.LastName + "\t" + f.Title + "\t" + f.DOB + "\t" + f.DOJ + "\t" + f.City);
+            }
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine("list of all the employee who have joined before 1/1/2015");
+            var e3 = from w2 in emplist
+                where w2.DOJ < new DateTime(2015,1,1)
+                select w2;
+
+            foreach (var f in e3)
+            {
+                Console.WriteLine(f.EmployeeId + "\t" + f.FirstName + "\t" + f.LastName + "\t" + f.Title + "\t" + f.DOB + "\t" + f.DOJ + "\t" + f.City);
+            }
+
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine("list of all the employee whose date of birth is after 1/1/1990");
+            var e4 = from w3 in emplist
+                where w3.DOB > new DateTime(1990,1,1)
+                select w3;
+
+            foreach (var f in e4)
+            {
+                Console.WriteLine(f.EmployeeId + "\t" + f.FirstName + "\t" + f.LastName + "\t" + f.Title + "\t" + f.DOB + "\t" + f.DOJ + "\t" + f.City);
+            }
+
+
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine("list of all the employee whose designation is Consultant and Associate");
+            var e5 = from w4 in emplist
+                where w4.Title == "Consultant" || w4.Title == "Associate"
+                select w4;
+
+            foreach (var f in e5)
+            {
+                Console.WriteLine(f.EmployeeId + "\t" + f.FirstName + "\t" + f.LastName + "\t" + f.Title + "\t" + f.DOB + "\t" + f.DOJ + "\t" + f.City);
+            }
+            
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine(" total number of employees");
+            int count = (from w5 in emplist
+                         select w5.FirstName).Count();
+            Console.WriteLine(count);
+
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine("total number of employees belonging to Chennai");
+            count = (from w6 in emplist
+                     where w6.City == "Chennai"
+                     select w6).Count();
+            Console.WriteLine(count);
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine("highest employee id from the list");
+            count = (from w7 in emplist
+
+                     select w7.EmployeeId).Max();
+            Console.WriteLine(count);
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine("total number of employee who have joined after 1/1/2015");
+            count = (from w8 in emplist
+                     where w8.DOJ > new DateTime(2015,1,1)
+                     select w8).Count();
+            Console.WriteLine( count);
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine("total number of employee whose designation is not “Associate”");
+            count = (from w9 in emplist
+                     where w9.Title != "Associate"
+                     select w9).Count();
+            Console.WriteLine(count);
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine("total number of employee based on City");
+            var p = (from h1 in emplist
+                    group h1 by h1.City into g
+                    select new {City=g.Key,C=g.Count()});
+
+            foreach (var t in p)
+            {
+                Console.WriteLine(t.C+"\t"+t.City);
+            }
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine("total number of employee based on City and title");
+            var p1 = from z in emplist
+                     group z by new { z.City, z.Title }
+                     into z2
+                     select new
+                     {
+                         City = z2.Key.City, Title = z2.Key.Title, count = z2.Count()
+                     };
+
+            foreach (var t in p1)
+            {
+                Console.WriteLine(t.City+"\t"+t.Title+"\t"+t.count);
+            }
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine("total number of employee who is youngest in the list");
+            var a = emplist.Max(x => x.DOB);
+            var b = emplist.Where(x => x.DOB == a);
+            foreach (var t in b)
+                Console.WriteLine(t.EmployeeId + "\t" + t.FirstName + "\t" + t.LastName + "\t" + t.Title + "\t" + t.DOB + "\t" + t.DOJ + "\t" + t.City);
+        }
+    }
+}
+
