@@ -1,0 +1,23 @@
+<html>
+    <bod>
+        <form>
+            1st Number:<input type="text" id="number1"/></br>
+            2nd Number:<input type="text" id="number2"/></br>
+            <input type="button" onclick="Compare()" value="compare">
+            <p> The Result is:</p><span id="result"></span>
+        </form>
+        <script>
+            function Compare()
+            {
+                n=parseInt(document.getElementById("number1").value);
+                m=parseInt(document.getElementById("number2").value);
+                if(n>=50&&n<=90&&m>=50&&m<=90)
+                {
+                    document.getElementById("result").innerHTML = true;
+                }
+                else
+                    document.getElementById("result").innerHTML = false;
+            }
+        </script>
+    </bod>
+</html>

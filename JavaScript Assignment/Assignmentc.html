@@ -1,0 +1,28 @@
+<html>
+    <body>
+        <form>
+        1st Number:<input type="text" id="number1"/></br>
+        2nd Number:<input type="text" id="number2"/></br>
+        <input type="button" onClick="sum()" value="sum">
+        
+        </form>
+        <p>The Result is : <br>
+            <span id = "result"></span>
+           </p>
+           
+        <script>
+           
+            function sum()
+            {
+                n=parseInt(document.getElementById("number1").value);
+                m=parseInt(document.getElementById("number2").value);
+                c=(m+n);
+                if(n==m)
+                    document.getElementById("result").innerHTML = c*3;
+                else
+                    document.getElementById("result").innerHTML = c;
+
+            }
+        </script>
+    </body>
+</html>

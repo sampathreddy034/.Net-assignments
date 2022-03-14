@@ -1,0 +1,30 @@
+<html>
+    <body>
+        <form>
+        1st Number:<input type="text" id="number1"/></br>
+        2nd Number:<input type="text" id="number2"/></br>
+        <input type="button" onClick="multiply()" value="multiply">
+        <input type="button" onClick="divide()" value="divide">
+        </form>
+        <p>The Result is : <br>
+            <span id = "result"></span>
+           </p>
+           
+        <script>
+           
+            function multiply()
+            {
+                n=document.getElementById("number1").value;
+            m=document.getElementById("number2").value;
+                document.getElementById("result").innerHTML = n* m;
+            }
+            function divide()
+            {
+                n=document.getElementById("number1").value;
+            m=document.getElementById("number2").value;
+                document.getElementById("result").innerHTML = n / m;
+            }
+        </script>
+
+    </body>
+</html>

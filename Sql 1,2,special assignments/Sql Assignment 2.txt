@@ -1,0 +1,46 @@
+						**Assignment-2**
+
+--1)
+select * from Emp where Job='Manager';
+
+--2)
+select Ename,Sal from Emp Where Ename='Miller' or Ename='Smith';
+
+--3)
+select Ename,Sal from Emp Where Sal>1000;
+
+--4)
+select * from Emp where Ename Not like 'James';
+
+--5)
+select * from Emp where Ename like 'S%';
+
+--6)
+select * from Emp where Ename like '%A%';
+
+--7)
+select * from Emp Where Ename like '__l%';
+
+--8)
+select Ename from Emp where Ename like '[A,M]%';
+
+--9)
+select Ename,Sal*12 as Yearly_Salary from Emp where Ename like 'Smith';
+
+--10)
+select Ename,Sal/30 as Daily_Salary from Emp Where Ename like 'Jones';
+
+--11)
+select sum(Sal) as Total_Monthly_Salaries from Emp;
+
+--12)
+select Avg(Sal*12) as Average_Annual_Salary from Emp;
+
+--13)
+select Ename,Job,Sal,Deptno from Emp where Job not like 'Salesman' (select * from Emp where Deptno=30);
+
+--14)
+select distinct(Deptno),Dept.Dname from Dept;
+
+--15)
+select Ename Employee,Sal Monthly_Salary from Emp where Sal> 1500 And Deptno in (10,30);
