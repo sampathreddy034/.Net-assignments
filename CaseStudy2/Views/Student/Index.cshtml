@@ -1,0 +1,58 @@
+﻿@model IEnumerable<CaseStudy2.Models.Student>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")&nbsp;&nbsp;&nbsp;&nbsp;
+    @Html.ActionLink("Search by City", "byCity")&nbsp;&nbsp;&nbsp;&nbsp;
+    @Html.ActionLink("Search by Branch", "byBranch")&nbsp;&nbsp;&nbsp;&nbsp;
+    @Html.ActionLink("Search by Percentage", "byPercentage")&nbsp;&nbsp;&nbsp;&nbsp;
+    @Html.ActionLink("Search by Id", "byid")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.StudName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Branch)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Percentage)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.City)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem=>item.StudId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StudName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Branch)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Percentage)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.City)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.StudId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.StudId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.StudId })
+        </td>
+    </tr>
+}
+
+</table>
