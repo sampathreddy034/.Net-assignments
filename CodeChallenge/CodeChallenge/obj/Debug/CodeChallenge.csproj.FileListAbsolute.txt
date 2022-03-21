@@ -1,0 +1,8 @@
+C:\Users\mv97783\source\repos\CodeChallenge\CodeChallenge\bin\Debug\CodeChallenge.exe.config
+C:\Users\mv97783\source\repos\CodeChallenge\CodeChallenge\bin\Debug\CodeChallenge.exe
+C:\Users\mv97783\source\repos\CodeChallenge\CodeChallenge\bin\Debug\CodeChallenge.pdb
+C:\Users\mv97783\source\repos\CodeChallenge\CodeChallenge\obj\Debug\CodeChallenge.csproj.AssemblyReference.cache
+C:\Users\mv97783\source\repos\CodeChallenge\CodeChallenge\obj\Debug\CodeChallenge.csproj.SuggestedBindingRedirects.cache
+C:\Users\mv97783\source\repos\CodeChallenge\CodeChallenge\obj\Debug\CodeChallenge.csproj.CoreCompileInputs.cache
+C:\Users\mv97783\source\repos\CodeChallenge\CodeChallenge\obj\Debug\CodeChallenge.exe
+C:\Users\mv97783\source\repos\CodeChallenge\CodeChallenge\obj\Debug\CodeChallenge.pdb
