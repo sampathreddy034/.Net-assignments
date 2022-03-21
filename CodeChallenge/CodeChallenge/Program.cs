@@ -48,6 +48,7 @@ namespace CodeChallenge
             cmd.Parameters.AddWithValue("@Esal", Esal);
             cmd.Connection=con;
             int c=cmd.ExecuteNonQuery();
+            Console.WriteLine("No of rows effected {0}",c);
             con.Close();
         }
     }
