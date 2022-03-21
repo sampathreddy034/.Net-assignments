@@ -44,8 +44,8 @@ namespace CodeChallenge
             cmd = new SqlCommand("execute dbo.EmpInsert @Eid,@Ename,@Esal,@Etype");
             cmd.Parameters.AddWithValue("@Eid", Eid);
             cmd.Parameters.AddWithValue("@Ename", Ename);
-            cmd.Parameters.AddWithValue("@Etype",Etype);
             cmd.Parameters.AddWithValue("@Esal", Esal);
+            cmd.Parameters.AddWithValue("@Etype", Etype);
             cmd.Connection=con;
             int c=cmd.ExecuteNonQuery();
             Console.WriteLine("No of rows effected {0}",c);
