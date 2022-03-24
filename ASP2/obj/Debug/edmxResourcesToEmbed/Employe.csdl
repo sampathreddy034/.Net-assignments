@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CaseStudyModel1" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Course">
+    <Key>
+      <PropertyRef Name="CourseID" />
+    </Key>
+    <Property Name="CourseID" Type="Int32" Nullable="false" />
+    <Property Name="CourseName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="CourseDuration" Type="Int32" />
+    <Property Name="CourseFees" Type="Double" />
+  </EntityType>
+  <EntityType Name="Employee">
+    <Key>
+      <PropertyRef Name="Empno" />
+    </Key>
+    <Property Name="Empno" Type="Int32" Nullable="false" />
+    <Property Name="Empname" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Empsal" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="Emptype" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Enrollment">
+    <Key>
+      <PropertyRef Name="StudentId" />
+      <PropertyRef Name="CourseId" />
+    </Key>
+    <Property Name="EnrollmentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="StudentId" Type="Int32" Nullable="false" />
+    <Property Name="StudentName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="CourseId" Type="Int32" Nullable="false" />
+    <Property Name="CourseName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="EnrollDate" Type="DateTime" Precision="0" />
+  </EntityType>
+  <EntityType Name="StudentInfo">
+    <Key>
+      <PropertyRef Name="StudentID" />
+    </Key>
+    <Property Name="StudentID" Type="Int32" Nullable="false" />
+    <Property Name="StudentName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="DOB" Type="DateTime" Precision="0" />
+  </EntityType>
+  <EntityContainer Name="CaseStudyEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Courses" EntityType="Self.Course" />
+    <EntitySet Name="Employees" EntityType="Self.Employee" />
+    <EntitySet Name="Enrollments" EntityType="Self.Enrollment" />
+    <EntitySet Name="StudentInfoes" EntityType="Self.StudentInfo" />
+    <FunctionImport Name="EmpInsert">
+      <Parameter Name="Eid" Mode="In" Type="Int32" />
+      <Parameter Name="Ename" Mode="In" Type="String" />
+      <Parameter Name="Esal" Mode="In" Type="Decimal" />
+      <Parameter Name="Etype" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetSalaryById" ReturnType="Collection(CaseStudyModel1.GetSalaryById_Result)">
+      <Parameter Name="Id" Mode="In" Type="Int32" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="GetSalaryById_Result">
+    <Property Type="Int32" Name="Empno" Nullable="false" />
+    <Property Type="String" Name="Empname" Nullable="true" MaxLength="30" />
+    <Property Type="Decimal" Name="Empsal" Nullable="true" Precision="10" Scale="2" />
+    <Property Type="String" Name="Emptype" Nullable="true" MaxLength="1" />
+  </ComplexType>
+</Schema>
